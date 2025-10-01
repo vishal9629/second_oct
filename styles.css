@@ -1,0 +1,167 @@
+/* Love Birthday Site — styles.css
+   Palette: soft pinks/peaches/ivory
+   Fonts: Sacramento (display), Poppins (body)
+*/
+:root{
+  --bg:#fff7fa;
+  --card:#ffffff;
+  --ink:#50314c;
+  --ink-soft:#7a5976;
+  --accent:#ff6fa5;
+  --accent-2:#ffc2d1;
+  --peach:#ffd7a8;
+  --shadow: 0 8px 24px rgba(80,49,76,0.08);
+  --radius: 1.25rem;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+}
+
+body{
+  margin:0;
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  color:var(--ink);
+  background: radial-gradient(1200px 600px at 20% 0%, #ffe9f1, transparent),
+              radial-gradient(1000px 500px at 80% 10%, #fff0e0, transparent),
+              var(--bg);
+  line-height:1.6;
+}
+
+.skip-link{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#fff;padding:.5rem .75rem;border-radius:.5rem;box-shadow:var(--shadow)}
+
+.site-header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.7);backdrop-filter:saturate(150%) blur(8px);
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1000px;margin:0 auto;padding:.75rem 1rem;
+}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:600}
+.brand-heart{width:24px;height:24px}
+.controls{display:flex;gap:.5rem}
+
+.site-main{max-width:1000px;margin:0 auto;padding:1rem;}
+
+.hero{
+  position:relative;
+  border-radius:var(--radius);
+  padding:4rem 1.25rem;
+  text-align:center;
+  color:var(--ink);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  background: linear-gradient(180deg,#fff,#fff5f8);
+}
+.hero-title{
+  font-family: Sacramento, 'Brush Script MT', cursive;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  margin:.25rem 0 .5rem;
+}
+.hero-sub{margin:0 0 1.25rem;color:var(--ink-soft)}
+
+.hearts-bg{
+  position:absolute;inset:0;pointer-events:none;opacity:.15;
+  background-image: url('assets/heart.svg');
+  background-size: 80px 80px;
+  animation: float-hearts 24s linear infinite;
+}
+@keyframes float-hearts{
+  from{background-position: 0 0}
+  to{background-position: 0 -800px}
+}
+@media (prefers-reduced-motion: reduce){
+  .hearts-bg{animation:none}
+}
+
+.section{margin:2rem 0}
+.card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:1.25rem;
+}
+.section-title{
+  font-family: Sacramento, cursive;
+  font-size: clamp(1.75rem,4vw,2.5rem);
+  margin:0 0 .75rem;
+}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  border:0;border-radius:999px;padding:.7rem 1.1rem;
+  font-weight:600;cursor:pointer;transition:transform .05s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent);color:white;box-shadow:0 8px 16px rgba(255,111,165,.25)}
+.btn.secondary{background:var(--peach);color:#733a2f;box-shadow:0 8px 16px rgba(255,215,168,.25)}
+.btn.ghost{background:transparent;border:1px solid rgba(0,0,0,.08)}
+
+.countdown-text{font-size:1.25rem;margin:.5rem 0 0}
+
+.timeline{list-style:none;padding:0;margin:0;display:grid;gap:.75rem}
+.timeline li{
+  display:grid;grid-template-columns: 44px 1fr;gap:.75rem;align-items:start;
+  opacity:0;transform:translateY(10px);animation: enter .6s forwards;
+  background:linear-gradient(180deg,#fff, #fff9fb);border-radius:.85rem;padding:.75rem;
+}
+.timeline .icon{
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:#ffe3ee;font-size:1.2rem;
+}
+@keyframes enter{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .timeline li{animation:none;opacity:1;transform:none}
+}
+
+.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;padding:0;margin:0;list-style:none}
+.reasons li{
+  background:linear-gradient(180deg,#fff,#fff5f8);
+  border-radius:.85rem;padding:1rem;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);min-height:84px;
+}
+.reasons li .pop{
+  position:absolute;right:10px;bottom:10px;transform:scale(0);transition:transform .2s ease;
+}
+.reasons li:hover .pop,.reasons li:focus-within .pop{transform:scale(1)}
+@media (hover:none){
+  .reasons li:active .pop{transform:scale(1)}
+}
+
+.gallery-grid{columns: 2 240px;column-gap:.75rem}
+.gallery-item{break-inside:avoid;background:#fff;border-radius:.75rem;box-shadow:var(--shadow);overflow:hidden;margin:0 0 .75rem}
+.gallery-item img{width:100%;height:auto;display:block}
+.gallery-item figcaption{padding:.5rem .75rem;color:var(--ink-soft);font-size:.9rem}
+
+dialog#lightbox{
+  border:0;border-radius:var(--radius);padding:0;max-width:min(92vw,900px);width:fit-content;
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+}
+.lightbox-inner{position:relative;background:#fff;border-radius:var(--radius);padding:1rem}
+.lightbox-inner img{max-width:80vw;max-height:70vh;display:block;margin:0 auto;border-radius:.75rem}
+.lightbox-inner .btn{position:absolute;top:.5rem}
+#lightboxPrev{left:.5rem} #lightboxClose{right:.5rem} #lightboxNext{right:3rem}
+.lightbox-caption{text-align:center;margin:.5rem 0 0;color:var(--ink-soft)}
+
+.carousel{position:relative}
+.carousel-track{display:flex;gap:.75rem;overflow:hidden}
+.note{min-width:100%;background:linear-gradient(180deg,#fff,#fff5f8);border-radius:.85rem;padding:1rem;box-shadow:var(--shadow)}
+.carousel-controls{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.5rem}
+.dots{display:flex;gap:.25rem}
+.dots button{width:10px;height:10px;border-radius:50%;border:0;background:#ffd7e0}
+.dots button[aria-selected="true"]{background:var(--accent)}
+
+.letter-body{margin-top:.75rem}
+.heartbeat{display:inline-block;animation:beat 1.4s infinite ease-in-out;transform-origin:center}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@media (prefers-reduced-motion: reduce){.heartbeat{animation:none}}
+
+.site-footer{margin:3rem 0 2rem;text-align:center;color:var(--ink-soft)}
+
+:focus{outline: 3px solid #ffb3c8; outline-offset: 2px;}

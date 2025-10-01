@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday — Love Site</title>
+  <meta name="description" content="A cute, love-themed birthday surprise website." />
+  <meta name="theme-color" content="#ffd7e0" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Happy Birthday — Love Site" />
+  <meta property="og:description" content="A cute, love-themed birthday surprise website." />
+  <meta property="og:image" content="assets/hero.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts: Sacramento (headings), Poppins (body) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <nav class="topbar" aria-label="Site">
+      <div class="brand">
+        <img src="assets/heart.svg" alt="" class="brand-heart" />
+        <span aria-hidden="true">With Love</span>
+      </div>
+      <div class="controls">
+        <button id="audioToggle" class="btn ghost" aria-label="Play music" aria-pressed="false" title="Play music (no autoplay)">Play</button>
+        <button id="shareBtn" class="btn ghost" aria-label="Share this surprise">Share</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="site-main" role="main">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
+      <div class="hearts-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <h1 class="hero-title">Happy Birthday, <span id="her-name">[Name]</span>!</h1>
+        <p class="hero-sub" id="heroSub">I’m so lucky to celebrate you today.</p>
+        <button id="ctaSurprise" class="btn primary">Play the Surprise</button>
+        <div class="hero-sparkles" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Countdown / Special Day -->
+    <section class="card section" id="countdownSection" aria-label="Countdown to the special day">
+      <h2 class="section-title">Counting down to your special day</h2>
+      <p id="countdownText" class="countdown-text" aria-live="polite"></p>
+    </section>
+
+    <!-- Our Story (Timeline) -->
+    <section class="card section" id="storySection" aria-label="Our story">
+      <h2 class="section-title">Our Story</h2>
+      <ol class="timeline" id="timelineList"></ol>
+    </section>
+
+    <!-- Reasons I Love You -->
+    <section class="card section" id="reasonsSection" aria-label="Reasons I love you">
+      <h2 class="section-title">10 Reasons I Love You</h2>
+      <ul class="reasons" id="reasonsList"></ul>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="card section" id="gallerySection" aria-label="Photo gallery">
+      <h2 class="section-title">Our Gallery</h2>
+      <div class="gallery-grid" id="galleryGrid">
+        <figure class="gallery-item">
+          <img src="assets\1.jpeg" alt="Memory 1" loading="lazy">
+          <figcaption>Memory 1</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\2.jpeg" alt="Memory 2" loading="lazy">
+          <figcaption>Memory 2</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\3.jpeg" alt="Memory 3" loading="lazy">
+          <figcaption>Memory 3</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\4.jpeg" alt="Memory 4" loading="lazy">
+          <figcaption>Memory 4</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\5.jpeg" alt="Memory 5" loading="lazy">
+          <figcaption>Memory 5</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\6.jpeg" alt="Memory 6" loading="lazy">
+          <figcaption>Memory 6</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\7.jpeg" alt="Memory 6" loading="lazy">
+          <figcaption>Memory 7</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\8.jpeg" alt="Memory 6" loading="lazy">
+          <figcaption>Memory 8</figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img src="assets\8.jpeg" alt="Memory 6" loading="lazy">
+          <figcaption>Memory 9</figcaption>
+        </figure>
+      </div>
+
+      <!-- Lightbox -->
+      <dialog id="lightbox" aria-label="Image preview">
+        <div class="lightbox-inner">
+          <button id="lightboxClose" class="btn ghost" aria-label="Close (Esc)">✕</button>
+          <button id="lightboxPrev" class="btn ghost" aria-label="Previous image">◀</button>
+          <img id="lightboxImg" alt="Selected memory">
+          <button id="lightboxNext" class="btn ghost" aria-label="Next image">▶</button>
+          <p id="lightboxCaption" class="lightbox-caption"></p>
+        </div>
+      </dialog>
+    </section>
+
+    <!-- Love Notes Carousel -->
+    <section class="card section" id="notesSection" aria-label="Love notes">
+      <h2 class="section-title">Little Love Notes</h2>
+      <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Love notes carousel">
+        <div class="carousel-track" id="carouselTrack"></div>
+        <div class="carousel-controls">
+          <button class="btn ghost" id="prevNote" aria-label="Previous note">◀</button>
+          <div class="dots" id="dots" role="tablist" aria-label="Slides"></div>
+          <button class="btn ghost" id="nextNote" aria-label="Next note">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- A Letter to You (Expandable) -->
+    <section class="card section" id="letterSection" aria-label="A letter to you">
+      <h2 class="section-title">A Letter to You</h2>
+      <button id="toggleLetter" class="btn secondary" aria-expanded="false" aria-controls="letterBody">
+        <span class="heartbeat" aria-hidden="true">💗</span> Open my letter
+      </button>
+      <div id="letterBody" class="letter-body" hidden>
+        <p id="letterText">My dearest, ...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>Made with 💖 by <span id="yourName">[Your Name]</span></p>
+  </footer>
+
+  <!-- Optional local audio (no autoplay) -->
+  <audio id="bgm" preload="none">
+    <source src="assets/song.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
